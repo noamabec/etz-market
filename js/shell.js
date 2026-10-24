@@ -20,7 +20,7 @@ const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 
 const TOP = ['svg[aria-hidden="true"]', '.skip-link', '#topstrip', '#site-header'];
-const BOTTOM = ['#site-footer', '.fab-wa', '.a11y', '.tabbar', '#drawer', '[data-scrim]', '#cart-drawer', '#toast'];
+const BOTTOM = ['#site-footer', '.fab-wa', '.a11y', '#drawer', '[data-scrim]', '#cart-drawer', '#toast'];
 // checkout (אפיון #14): בלי האדר ופוטר מלאים, בלי WhatsApp — רק לוגו, "סליקה מאובטחת" וטלפון
 const TOP_MIN = ['svg[aria-hidden="true"]', '.skip-link'];
 const BOTTOM_MIN = ['.a11y', '#toast'];
@@ -32,11 +32,6 @@ const NAV_FOR = {
   'deck-calculator': 'deck-calculator.html',
   guides: 'guides.html', guide: 'guides.html',
   about: 'about.html', contact: 'contact.html',
-};
-/** איזה טאב בסרגל התחתון (מובייל) פעיל */
-const TAB_FOR = {
-  shop: 'shop.html', category: 'shop.html', product: 'shop.html', search: 'shop.html', wishlist: 'shop.html',
-  account: 'account.html', login: 'account.html', cart: 'cart',
 };
 
 function minimalHeader(doc) {
@@ -80,11 +75,6 @@ function markActive(page) {
   } else if (navTarget) {
     $$(`.nav-list a.nav-link[href*="${navTarget}"], .drawer-nav ol a[href*="${navTarget}"]`).forEach(a => a.setAttribute('aria-current', 'page'));
   }
-  // tab bar
-  $$('.tabbar a, .tabbar button').forEach(a => { a.classList.remove('is-active'); a.removeAttribute('aria-current'); });
-  const tab = TAB_FOR[page];
-  const el = tab === 'cart' ? $('.tabbar [data-open-cart]') : tab ? $(`.tabbar a[href="${tab}"]`) : null;
-  if (el) { el.classList.add('is-active'); el.setAttribute('aria-current', 'page'); }
 }
 
 async function build() {

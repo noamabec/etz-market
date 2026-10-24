@@ -169,7 +169,7 @@ function hideToast() {
 
 /** Add-to-cart micro-interaction: a dot flies to the cart icon, then the icon shakes. */
 export function flyToCart(fromEl) {
-  const target = [...document.querySelectorAll('#cart-btn, .tabbar [data-open-cart]')].find(el => el.offsetParent !== null) || $('#cart-btn');
+  const target = [...document.querySelectorAll('#cart-btn')].find(el => el.offsetParent !== null) || $('#cart-btn');
   if (!target) return;
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches || document.documentElement.classList.contains('a11y-nomotion');
   const done = () => { target.classList.remove('shake'); void target.offsetWidth; target.classList.add('shake'); };

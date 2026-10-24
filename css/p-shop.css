@@ -280,12 +280,12 @@ thead .up-col { background: var(--accent); }
 .buybar-on .fab-wa, .buybar-on .a11y { bottom: 96px; }
 .buybar-on .toast { bottom: 168px; }
 @media (max-width: 900px) {
-  .buybar { bottom: calc(64px + env(safe-area-inset-bottom)); }
+  .buybar { bottom: 0; padding-bottom: env(safe-area-inset-bottom); }
   .buybar-in { min-height: 64px; gap: 10px; }
   .buybar-img { width: 44px; height: 44px; }
   .buybar-add { --bh: 44px; padding-inline: 16px; }
-  .buybar-on .fab-wa, .buybar-on .a11y { bottom: calc(144px + env(safe-area-inset-bottom)); }
-  .buybar-on .toast { bottom: calc(210px + env(safe-area-inset-bottom)); }
+  .buybar-on .fab-wa, .buybar-on .a11y { bottom: calc(80px + env(safe-area-inset-bottom)); }
+  .buybar-on .toast { bottom: calc(146px + env(safe-area-inset-bottom)); }
 }
 
 /* ---------- 6. Lightbox ---------- */

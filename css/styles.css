@@ -788,8 +788,16 @@ html.a11y-nomotion.js .dim::before { transform: none; }
   .calc-result .res-price { grid-column: span 2; flex-direction: row; align-items: baseline; justify-content: space-between; flex-wrap: wrap; }
   .calc-actions .btn { width: 100%; }
 
-  .steps { grid-template-columns: 1fr 1fr; row-gap: 28px; }
+  /* mobile: vertical timeline — icon rail on the start side, text full width */
+  .steps { grid-template-columns: 1fr; row-gap: 0; max-width: 520px; margin-inline: auto; }
   .steps::before, .steps::after { display: none; }
+  .step { display: grid; grid-template-columns: 52px 1fr; column-gap: 16px; row-gap: 2px; align-items: start; padding: 0 0 28px; }
+  .step:last-child { padding-bottom: 0; }
+  .step:not(:last-child)::before { content: ""; position: absolute; inset-inline-start: 25px; top: 60px; bottom: 6px; border-inline-start: 2px dashed rgb(36 28 22 / .18); }
+  .step-ico { grid-column: 1; grid-row: 1 / span 3; margin: 0; }
+  .step-num { grid-column: 2; grid-row: 1; padding: 0; background: none; -webkit-text-stroke: 0; color: var(--ink-68); font-family: var(--ff-body); font-weight: var(--fw-bold); font-size: 13px; letter-spacing: .08em; margin-top: 4px; }
+  .step h3 { grid-column: 2; font-size: 20px; }
+  .step p { grid-column: 2; max-width: none; font-size: var(--fs-5); }
 
   .split-grid { display: flex; flex-direction: column; gap: 32px; align-items: stretch; }
   .split-rev { flex-direction: column-reverse; }

@@ -353,4 +353,10 @@ initNewsletter();
 initA11y();
 initReveal();
 
+/* Hero crane drop — runs once, after fonts so the scene doesn't shift mid-animation */
+if (document.querySelector('.hv-crane')) {
+  Promise.race([document.fonts.ready, new Promise(r => setTimeout(r, 1200))])
+    .then(() => requestAnimationFrame(() => document.documentElement.classList.add('hero-go')));
+}
+
 export { renderMenus, productCard };

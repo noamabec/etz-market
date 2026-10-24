@@ -62,6 +62,8 @@
   --t-fast: .24s; --t-med: .45s; --t-slow: .9s;
 
   --shadow-pop: 0 24px 60px -24px rgb(36 28 22 / .38);
+  --shadow-soft: 0 2px 4px rgb(36 28 22 / .06), 0 12px 28px -14px rgb(36 28 22 / .28);
+  --shadow-soft-hover: 0 3px 6px rgb(36 28 22 / .07), 0 20px 40px -16px rgb(36 28 22 / .34);
   --hdr-main-h: 64px;
   --hdr-nav-h: 46px;
 }
@@ -338,7 +340,8 @@ s { color: var(--ink-68); font-weight: var(--fw-light); }
 /* 2. Categories */
 .cat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--gutter); }
 .cat-card { display: flex; flex-direction: column; gap: 12px; height: 100%; }
-.cat-card .ph { aspect-ratio: 4 / 3.4; border-radius: var(--r-m); }
+.cat-card .ph { aspect-ratio: 4 / 3.4; border-radius: var(--r-m); box-shadow: var(--shadow-soft); transition: box-shadow var(--t-med) var(--e-soft); }
+.cat-card:hover .ph { box-shadow: var(--shadow-soft-hover); }
 .cat-card .ph::before { content: ""; position: absolute; inset: 0; background: inherit; transition: transform .8s var(--e-soft); z-index: -1; }
 .cat-card:hover .ph::before { transform: scale(1.06); }
 .cat-card .ph::after { font-size: 11px; }
@@ -819,3 +822,68 @@ html.a11y-nomotion.js .dim::before { transform: none; }
   .cta-row { flex-direction: column; }
   .cta-row .btn-lg { width: 100%; }
 }
+
+/* ---------- Hero visual: המנוף מוריד את ההזמנה ----------
+   הסצנה היא "תמונה", לכן בתוכה כיוונים פיזיים (left/right) ולא לוגיים.
+   האנימציה רצה פעם אחת כש-<html> מקבל .hero-go (main.js). */
+.hero-visual.hv { min-height: clamp(460px, 44vw, 600px); }
+.hv-crane .crane-scene { position: absolute; right: 15%; bottom: 12%; width: 160%; aspect-ratio: 1400 / 846; }
+.cs-truck { position: absolute; inset: 0; width: 100%; height: 100%; }
+.cs-ground { position: absolute; left: -40%; right: -14%; bottom: -1px; height: 1.5px; background: var(--ink-14); }
+.cs-ground::after { content: ""; position: absolute; inset-inline: 0; top: 10px; border-top: 1.5px dashed rgb(36 28 22 / .1); }
+.cs-shadow { position: absolute; left: 0; right: 0; bottom: -3%; height: 7%; border-radius: 50%; background: radial-gradient(closest-side, rgb(36 28 22 / .28), transparent); }
+
+/* נקודת הקצה של הזרוע: 98.9% / 3.5% מתמונת המשאית */
+.cs-load { position: absolute; left: 98.9%; top: 3.5%; bottom: 0; width: 30%; transform: translateX(-50%); z-index: 2; }
+.cs-cable { position: absolute; left: 50%; top: 0; width: 2px; margin-left: -1px; height: 50.6%; background: linear-gradient(#2b2b2b, #555); transform-origin: top; }
+.cs-bundle { position: absolute; left: 0; right: 0; top: 50.6%; height: 49.4%; transform-origin: 50% 0; }
+.cs-bundle img { display: block; width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 10px 14px rgb(36 28 22 / .18)); }
+.cs-bshadow { position: absolute; left: 50%; bottom: -4%; width: 34%; height: 8%; transform: translateX(-50%); border-radius: 50%; background: radial-gradient(closest-side, rgb(36 28 22 / .35), transparent); }
+.cs-dust { position: absolute; left: 50%; bottom: -3%; width: 44%; height: 16%; transform: translateX(-50%); border-radius: 50%; background: radial-gradient(closest-side, rgb(214 196 166 / .9), rgb(214 196 166 / 0)); opacity: 0; pointer-events: none; }
+
+/* תווית משלוח שתלויה על החבילה */
+.cs-tag { position: absolute; z-index: 3; right: calc(50% + 14px); top: 13%; display: grid; gap: 2px; padding: 10px 26px 10px 14px; background: var(--card, #fffdf8); border: 1.5px solid var(--ink); border-radius: var(--r-s); box-shadow: var(--shadow-pop); font-size: 13px; line-height: 1.25; white-space: nowrap; transform-origin: calc(100% + 14px) 12px; }
+/* חוט קצר מהתווית אל הכבל */
+.cs-tag::before { content: ""; position: absolute; top: 12px; right: -15px; width: 15px; height: 1.5px; background: var(--ink); }
+.cs-tag::after { content: ""; position: absolute; top: 9px; right: 6px; width: 7px; height: 7px; border-radius: 50%; border: 1.5px solid var(--ink); }
+.cs-tag b { font-family: var(--ff-display); font-weight: var(--fw-display); font-size: 22px; line-height: 1; }
+.cs-tag small { color: var(--ink-68); font-weight: var(--fw-med); }
+.cs-tag .hl { background: var(--accent); padding: 0 4px; border-radius: 3px; }
+
+.js .hv-crane .cs-cable { transform: scaleY(.08); }
+.js .hv-crane .cs-bundle { transform: translateY(-94%) rotate(-3deg); }
+.js .hv-crane .cs-bshadow { opacity: 0; transform: translateX(-50%) scale(.4); }
+.js .hv-crane .cs-tag { opacity: 0; transform: rotate(14deg) translateY(-8px); }
+.hero-go .hv-crane .cs-cable { animation: csCable 1.9s var(--e-soft) .35s both; }
+.hero-go .hv-crane .cs-bundle { animation: csDrop 1.9s var(--e-soft) .35s both; }
+.hero-go .hv-crane .cs-bshadow { animation: csShadow 1.9s var(--e-soft) .35s both; }
+.hero-go .hv-crane .cs-dust { animation: csDust 1s ease-out 1.85s both; }
+.hero-go .hv-crane .cs-tag { animation: csTag 1.3s var(--e-soft) 2.15s both; }
+@keyframes csCable { 0% { transform: scaleY(.08); } 80% { transform: scaleY(1); } 88% { transform: scaleY(.985); } 100% { transform: scaleY(1); } }
+@keyframes csDrop {
+  0% { transform: translateY(-94%) rotate(-3deg); }
+  45% { transform: translateY(-46%) rotate(2deg); }
+  80% { transform: translateY(0) rotate(0); }
+  88% { transform: translateY(-1.6%) rotate(0); }
+  100% { transform: translateY(0) rotate(0); }
+}
+@keyframes csShadow { 0% { opacity: 0; transform: translateX(-50%) scale(.4); } 80%, 100% { opacity: 1; transform: translateX(-50%) scale(1); } }
+@keyframes csDust { 0% { opacity: 0; transform: translateX(-50%) scale(.5); } 25% { opacity: .9; } 100% { opacity: 0; transform: translateX(-50%) scale(1.6, 1.25); } }
+@keyframes csTag { 0% { opacity: 0; transform: rotate(14deg) translateY(-8px); } 35% { opacity: 1; transform: rotate(-7deg); } 60% { transform: rotate(4deg); } 80% { transform: rotate(-2deg); } 100% { opacity: 1; transform: rotate(-1.5deg); } }
+@media (max-width: 760px) {
+  .hero-visual.hv { min-height: 0; aspect-ratio: auto; }
+  .hv-crane { height: 300px; }
+  .hv-crane .crane-scene { right: 17%; bottom: 14%; width: 92%; }
+  .cs-tag { font-size: 11px; padding: 7px 22px 7px 10px; }
+  .cs-tag b { font-size: 17px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hv-crane * { animation: none !important; }
+  .js .hv-crane .cs-cable, .js .hv-crane .cs-bundle { transform: none; }
+  .js .hv-crane .cs-bshadow { opacity: 1; transform: translateX(-50%); }
+  .js .hv-crane .cs-tag { opacity: 1; transform: rotate(-1.5deg); }
+}
+html.a11y-nomotion .hv-crane * { animation: none !important; }
+html.a11y-nomotion.js .hv-crane .cs-cable, html.a11y-nomotion.js .hv-crane .cs-bundle { transform: none; }
+html.a11y-nomotion.js .hv-crane .cs-bshadow { opacity: 1; transform: translateX(-50%); }
+html.a11y-nomotion.js .hv-crane .cs-tag { opacity: 1; transform: rotate(-1.5deg); }

@@ -62,8 +62,8 @@
   --t-fast: .24s; --t-med: .45s; --t-slow: .9s;
 
   --shadow-pop: 0 24px 60px -24px rgb(36 28 22 / .38);
-  --shadow-soft: 0 2px 4px rgb(36 28 22 / .06), 0 12px 28px -14px rgb(36 28 22 / .28);
-  --shadow-soft-hover: 0 3px 6px rgb(36 28 22 / .07), 0 20px 40px -16px rgb(36 28 22 / .34);
+  --shadow-soft: 0 3px 8px rgb(36 28 22 / .12), 0 16px 32px -10px rgb(36 28 22 / .38);
+  --shadow-soft-hover: 0 4px 10px rgb(36 28 22 / .14), 0 24px 44px -12px rgb(36 28 22 / .45);
   --hdr-main-h: 64px;
   --hdr-nav-h: 46px;
 }

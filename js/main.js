@@ -353,6 +353,31 @@ initNewsletter();
 initA11y();
 initReveal();
 
+/* "How it works" on mobile — the yellow rail fills as the steps scroll past mid-screen
+   and each icon lights up when the rail reaches it (desktop does this on hover). */
+function initStepsRail() {
+  const steps = document.querySelector('.steps');
+  if (!steps) return;
+  const mq = matchMedia('(max-width: 760px)');
+  const icons = [...steps.querySelectorAll('.step-ico')];
+  let raf = 0;
+  const update = () => {
+    raf = 0;
+    if (!mq.matches) { steps.style.removeProperty('--pv'); icons.forEach(i => i.closest('.step').classList.remove('is-lit')); return; }
+    const centers = icons.map(i => { const b = i.getBoundingClientRect(); return b.top + b.height / 2; });
+    const first = centers[0], last = centers[centers.length - 1];
+    const mark = innerHeight * .6;
+    steps.style.setProperty('--rail', `${last - first}px`);
+    steps.style.setProperty('--pv', Math.min(1, Math.max(0, (mark - first) / (last - first))).toFixed(3));
+    icons.forEach((i, k) => i.closest('.step').classList.toggle('is-lit', centers[k] <= mark));
+  };
+  const queue = () => { if (!raf) raf = requestAnimationFrame(update); };
+  addEventListener('scroll', queue, { passive: true });
+  addEventListener('resize', queue);
+  update();
+}
+initStepsRail();
+
 /* Hero crane drop — runs once, after fonts so the scene doesn't shift mid-animation */
 if (document.querySelector('.hv-crane')) {
   Promise.race([document.fonts.ready, new Promise(r => setTimeout(r, 1200))])

@@ -790,7 +790,13 @@ html.a11y-nomotion.js .dim::before { transform: none; }
 
   /* mobile: vertical timeline — icon rail on the start side, text full width */
   .steps { grid-template-columns: 1fr; row-gap: 0; max-width: 520px; margin-inline: auto; }
-  .steps::before, .steps::after { display: none; }
+  .steps::before { display: none; }
+  /* scroll-driven rail: fills crane-yellow from the first icon to the last (main.js sets --pv, --rail) */
+  .steps::after { top: 26px; right: auto; inset-inline-start: 25px; width: 2px; height: var(--rail, 0px); transform: scaleY(var(--pv, 0)); transform-origin: top; transition: transform .15s linear; z-index: 0; }
+  .step-ico { position: relative; z-index: 1; }
+  .step.is-lit .step-ico { background: var(--accent); color: var(--ink); box-shadow: 0 0 0 6px rgb(242 177 36 / .22); }
+  .step.is-lit .step-num { color: var(--ink); }
+  .step:last-child:not(.is-lit) .step-ico { background: var(--ink); color: var(--paper); }
   .step { display: grid; grid-template-columns: 52px 1fr; column-gap: 16px; row-gap: 2px; align-items: start; padding: 0 0 28px; }
   .step:last-child { padding-bottom: 0; }
   .step:not(:last-child)::before { content: ""; position: absolute; inset-inline-start: 25px; top: 60px; bottom: 6px; border-inline-start: 2px dashed rgb(36 28 22 / .18); }

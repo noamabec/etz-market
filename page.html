@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>מעבירים אתכם… — עץ מרקט</title>
+  <!-- Legacy URL: page.html?p=<key> → the real page file (map in js/routes.js → legacyToUrl). Unknown key → 404.html -->
+  <script type="module">
+    import { legacyToUrl, url } from './js/routes.js';
+    location.replace(legacyToUrl(location.search) || url.notFound());
+  </script>
+</head>
+<body>
+  <p><a href="index.html">לדף הבית של עץ מרקט</a></p>
+</body>
+</html>

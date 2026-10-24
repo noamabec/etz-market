@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>משלוחים והובלה עם מנוף — עץ מרקט</title>
+  <meta name="description" content="משלוח עם מנוף לכל הארץ תוך 72 שעות. מחירים לפי אזור ומשקל, משלוח חינם מעל 3,000 ₪, ואיסוף עצמי מהמחסן בירכא.">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#241C16">
+  <script>document.documentElement.classList.add('js');try{var a=JSON.parse(localStorage.getItem('etz_a11y')||'{}');for(var k in a)if(a[k])document.documentElement.classList.add(k);}catch(e){}</script>
+  <link rel="preload" href="fonts/Birzia-Black.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/FbAbsolutiHeb-LIght.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <link rel="stylesheet" href="css/p-content.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23241C16'/%3E%3Ccircle cx='16' cy='16' r='10' fill='none' stroke='%23F2B124' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='5.5' fill='none' stroke='%23F2B124' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='1.6' fill='%23F2B124'/%3E%3C/svg%3E">
+</head>
+<body data-page="delivery">
+
+<main id="main">
+
+  <!-- ===== 1. פתיחה ===== -->
+  <section class="page-head page-head--media" aria-labelledby="page-title">
+    <div class="container page-head-in">
+      <div class="page-head-text">
+        <div data-crumbs></div>
+        <p class="eyebrow">משלוחים והובלה</p>
+        <h1 class="page-title" id="page-title">עד הבית, עם מנוף, בכל הארץ</h1>
+        <p class="page-intro">משאית עם מנוף פורקת את העץ ישר לחצר, למרפסת או לגג — עד 72 שעות לרוב הארץ. המחיר לפי אזור ומשקל, ומעל <bdi>3,000&nbsp;₪</bdi> המשלוח עלינו.</p>
+        <ul class="dx-facts">
+          <li><strong><bdi>72</bdi> שעות</strong><span>לרוב הארץ</span></li>
+          <li><strong>3 קומות</strong><span>טווח המנוף</span></li>
+          <li><strong>חינם</strong><span>מעל <bdi>3,000&nbsp;₪</bdi></span></li>
+        </ul>
+        <div class="cta-row">
+          <a class="btn btn-primary btn-lg" href="#zones">למחירי משלוח לפי אזור <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </div>
+      </div>
+      <div class="page-head-media">
+        <div class="ph dx-hero-ph" data-tone="teak" data-label="צילום: משאית המנוף פורקת ערימת קורות בחצר של לקוח · 1600×1000">
+          <img class="ph-img" src="assets/img/pergola-yard.webp" alt="" fetchpriority="high">
+          <span class="dx-hero-badge"><svg class="ico" aria-hidden="true"><use href="#i-crane"/></svg> פריקה במקום</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 2. אזורים ומחירים ===== -->
+  <section class="section" id="zones" aria-labelledby="zones-title">
+    <div class="container">
+      <div class="sec-head">
+        <div>
+          <p class="eyebrow" data-anim>אזורים ומחירים</p>
+          <h2 class="h2" id="zones-title" data-anim>כמה עולה משלוח אליכם?</h2>
+        </div>
+        <p class="notice notice--ok dx-free" data-anim><svg class="ico" aria-hidden="true"><use href="#i-crane"/></svg><span><strong>משלוח חינם מעל <bdi>3,000&nbsp;₪</bdi></strong> — לכל האזורים חוץ מאילת והערבה.</span></p>
+      </div>
+
+      <div class="dx-zones">
+        <!-- מפה סכמטית: סרגל צפון→דרום -->
+        <div class="dx-map panel" data-anim>
+          <p class="field-lbl" id="map-lbl">בחרו אזור</p>
+          <div class="dx-map-ruler" role="group" aria-labelledby="map-lbl" data-zone-map></div>
+          <p class="note dx-map-note"><svg class="ico ico-s" aria-hidden="true"><use href="#i-pin"/></svg> יוצאים מהמחסן בירכא, בגליל המערבי</p>
+        </div>
+
+        <div class="dx-zone-side">
+          <div class="panel dx-quote" aria-live="polite" data-zone-detail></div>
+          <div class="table-wrap" data-anim>
+            <table class="table table-stack dx-table">
+              <caption class="sr-only">מחירי משלוח עם מנוף לפי אזור ומשקל ההזמנה</caption>
+              <thead><tr><th scope="col">אזור</th><th scope="col" data-tier-head="0"></th><th scope="col" data-tier-head="1"></th><th scope="col" data-tier-head="2"></th><th scope="col">זמן אספקה</th></tr></thead>
+              <tbody data-zone-rows></tbody>
+            </table>
+          </div>
+          <p class="note">המחיר המדויק מחושב בסל לפי הכתובת והמשקל · המחירים כוללים מע"מ · מחירי דוגמה</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 3. זמני אספקה ===== -->
+  <section class="section" aria-labelledby="time-title">
+    <div class="container dx-time">
+      <div class="dx-time-big" data-anim>
+        <p class="eyebrow">זמני אספקה</p>
+        <h2 class="h2" id="time-title">עד <span class="dx-72"><bdi>72</bdi></span> שעות</h2>
+        <p class="lead">מהרגע שהנציג מאשר את ההזמנה בטלפון. את היום והחלון המדויק מתאמים איתכם — בוקר או צהריים.</p>
+      </div>
+      <ol class="dx-days" data-zone-days data-anim style="--d:.1s"></ol>
+    </div>
+  </section>
+
+  <!-- ===== 4. התהליך ===== -->
+  <section class="section" aria-labelledby="how-title">
+    <div class="container">
+      <div class="sec-head sec-head-center">
+        <p class="eyebrow" data-anim>התהליך</p>
+        <h2 class="h2" id="how-title" data-anim>מהמחסן עד הבית ב-4 צעדים</h2>
+      </div>
+      <ol class="steps">
+        <li class="step" data-anim><span class="step-num" aria-hidden="true">01</span><span class="step-ico"><svg class="ico" aria-hidden="true"><use href="#i-card"/></svg></span><h3>מזמינים באתר</h3><p>בקופה בוחרים "משלוח עם מנוף" ומסמנים אם יש גישה למשאית.</p></li>
+        <li class="step" data-anim style="--d:.1s"><span class="step-num" aria-hidden="true">02</span><span class="step-ico"><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg></span><h3>מאשרים בטלפון</h3><p>נציג מתקשר תוך 24 שעות — מידות, כתובת, מקום פריקה ומועד.</p></li>
+        <li class="step" data-anim style="--d:.2s"><span class="step-num" aria-hidden="true">03</span><span class="step-ico"><svg class="ico" aria-hidden="true"><use href="#i-box"/></svg></span><h3>מכינים ומעמיסים</h3><p>חותכים, אורזים ומעמיסים על המשאית. ביום המשלוח שולחים SMS.</p></li>
+        <li class="step" data-anim style="--d:.3s"><span class="step-num" aria-hidden="true">04</span><span class="step-ico"><svg class="ico" aria-hidden="true"><use href="#i-crane"/></svg></span><h3>פורקים עם מנוף</h3><p>המנוף מוריד את העץ למקום שסיכמנו — גם למרפסת או לגג.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===== 5. מה להכין ===== -->
+  <section class="section" aria-labelledby="prep-title">
+    <div class="container">
+      <div class="sec-head">
+        <div>
+          <p class="eyebrow" data-anim>לפני שהמשאית מגיעה</p>
+          <h2 class="h2" id="prep-title" data-anim>3 דברים להכין מראש</h2>
+        </div>
+      </div>
+      <ol class="grid-3 dx-prep">
+        <li class="panel" data-anim>
+          <span class="dx-prep-num" aria-hidden="true">1</span>
+          <span class="cx-gear-ico"><svg class="ico" aria-hidden="true"><use href="#i-crane"/></svg></span>
+          <h3 class="h3">גישה למשאית</h3>
+          <p class="muted">רחוב או חניה שמשאית באורך כ-10 מ׳ יכולה לעמוד בהם, בלי חוטי חשמל נמוכים מעל.</p>
+        </li>
+        <li class="panel" data-anim style="--d:.1s">
+          <span class="dx-prep-num" aria-hidden="true">2</span>
+          <span class="cx-gear-ico"><svg class="ico" aria-hidden="true"><use href="#i-box"/></svg></span>
+          <h3 class="h3">מקום פריקה פנוי</h3>
+          <p class="muted">משטח ישר ופנוי — לפחות באורך העץ הארוך בהזמנה. עד כ-15 מ׳ מהמשאית.</p>
+        </li>
+        <li class="panel" data-anim style="--d:.2s">
+          <span class="dx-prep-num" aria-hidden="true">3</span>
+          <span class="cx-gear-ico"><svg class="ico" aria-hidden="true"><use href="#i-user"/></svg></span>
+          <h3 class="h3">מישהו במקום</h3>
+          <p class="muted">שיראה לנהג איפה לפרוק ויחתום על קבלת הסחורה. אפשר גם שכן או קבלן.</p>
+        </li>
+      </ol>
+      <p class="note dx-prep-note">לא בטוחים שיש גישה? סמנו "לא בטוח" בקופה — הנציג יבדוק איתכם בטלפון, ואם צריך נשלח משאית קטנה יותר.</p>
+    </div>
+  </section>
+
+  <!-- ===== 6. איסוף עצמי ===== -->
+  <section class="section" aria-labelledby="pickup-title">
+    <div class="container">
+      <div class="dx-pickup" data-pickup></div>
+    </div>
+  </section>
+
+  <!-- ===== 7. שאלות נפוצות ===== -->
+  <section class="section" aria-labelledby="faq-title">
+    <div class="container layout">
+      <div class="layout-main">
+        <p class="eyebrow">שאלות נפוצות</p>
+        <h2 class="h2 cx-faq-title" id="faq-title">שאלות על משלוחים</h2>
+        <div class="faq-list" data-faq="shipping"></div>
+        <p class="cx-faq-more"><a class="link-arrow" href="faq.html#shipping">לכל השאלות הנפוצות <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
+      </div>
+      <aside class="layout-aside" aria-label="תיאום משלוח">
+        <div class="aside-sticky panel panel-tint cx-cta">
+          <span class="cx-cta-ico"><svg class="ico" aria-hidden="true"><use href="#i-crane"/></svg></span>
+          <h3 class="h3">משלוח מיוחד?</h3>
+          <p class="muted">קומה גבוהה, גישה צרה או אתר בנייה — דברו איתנו ונמצא פתרון.</p>
+          <a class="btn btn-primary btn-block" data-wa-link="שלום, אשמח לתאם משלוח עם מנוף" href="https://wa.me/97245550000" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg> כתבו לנו ב-WhatsApp</a>
+          <a class="btn btn-ghost btn-block" href="tel:+97245550000"><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg> <bdi dir="ltr">04-555-0000</bdi></a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+</main>
+
+<script type="module" src="js/p-content.js"></script>
+</body>
+</html>

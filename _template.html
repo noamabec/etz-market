@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <!-- ===================================================================
+       תבנית עמוד פנימי — להעתיק לקובץ חדש (למשל shop.html) ולשנות:
+       1. <title> + description
+       2. <body data-page="..."> — המפתח מ-ROUTES (js/routes.js / ROUTES.md)
+          לקופה: <body data-page="checkout" data-shell="checkout"> (מעטפת מינימלית)
+       3. קובץ ה-CSS וה-JS של הקבוצה שלכם (p-shop / p-checkout / p-content / p-info)
+       4. התוכן בתוך <main id="main">. ההאדר והפוטר מגיעים אוטומטית מ-index.html.
+       =================================================================== -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>תבנית עמוד — עץ מרקט</title>
+  <meta name="description" content="תיאור קצר של העמוד (עד 155 תווים).">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#241C16">
+  <script>document.documentElement.classList.add('js');try{var a=JSON.parse(localStorage.getItem('etz_a11y')||'{}');for(var k in a)if(a[k])document.documentElement.classList.add(k);}catch(e){}</script>
+  <link rel="preload" href="fonts/Birzia-Black.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/FbAbsolutiHeb-LIght.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <link rel="stylesheet" href="css/p-info.css"><!-- ← קובץ הקבוצה שלכם -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23241C16'/%3E%3Ccircle cx='16' cy='16' r='10' fill='none' stroke='%23F2B124' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='5.5' fill='none' stroke='%23F2B124' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='1.6' fill='%23F2B124'/%3E%3C/svg%3E">
+</head>
+<body data-page="template">
+
+<main id="main">
+
+  <!-- ===== ראש העמוד (פירורי לחם + כותרת + פתיח) ===== -->
+  <section class="page-head" aria-labelledby="page-title">
+    <div class="container page-head-in">
+      <div class="page-head-text">
+        <div data-crumbs></div>
+        <p class="eyebrow">כותרת מקדימה</p>
+        <h1 class="page-title" id="page-title">כותרת העמוד</h1>
+        <p class="page-intro">משפט פתיחה קצר שמסביר מה יש בעמוד ולמה זה שימושי. עד שתי שורות.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== אזור לדוגמה: פריסה עם צד דביק ===== -->
+  <section class="section-sm" aria-labelledby="demo-title">
+    <div class="container layout">
+      <div class="layout-main stack-lg">
+        <div>
+          <h2 class="sec-title" id="demo-title">מוצרים לדוגמה</h2>
+          <div class="p-grid p-grid-3 p-grid-wrap" data-demo-grid></div>
+        </div>
+
+        <div>
+          <h2 class="sec-title">שאלות נפוצות (פתוחות)</h2>
+          <div class="faq-list" data-demo-faq></div>
+        </div>
+
+        <div>
+          <h2 class="sec-title">טבלה</h2>
+          <div class="table-wrap">
+            <table class="table table-stack" data-demo-table>
+              <thead><tr><th scope="col">אזור</th><th scope="col">עד 500 ק"ג</th><th scope="col">זמן אספקה</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <aside class="layout-aside" aria-label="טופס לדוגמה">
+        <div class="aside-sticky panel">
+          <ol class="progress" aria-label="שלבי ההזמנה">
+            <li class="is-done">סל</li><li class="is-current" aria-current="step">פרטים</li><li>משלוח</li><li>תשלום</li>
+          </ol>
+          <form class="form-grid" novalidate style="margin-top:20px">
+            <div class="fld fld-full">
+              <label class="field-lbl" for="t-name">שם מלא <span class="req" aria-hidden="true">*</span></label>
+              <input class="input" id="t-name" name="name" autocomplete="name" required>
+            </div>
+            <div class="fld fld-full is-error">
+              <label class="field-lbl" for="t-phone">טלפון</label>
+              <input class="input" id="t-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" aria-invalid="true" aria-describedby="t-phone-err">
+              <p class="fld-error" id="t-phone-err">נא להזין מספר טלפון, למשל 050-1234567</p>
+            </div>
+            <div class="fld fld-full">
+              <label class="field-lbl" for="t-topic">נושא</label>
+              <select class="input" id="t-topic"><option>הזמנה</option><option>משלוח</option><option>חיתוך</option><option>אחר</option></select>
+            </div>
+            <label class="check fld-full"><input type="checkbox" name="company"><span>חשבונית על שם חברה</span></label>
+            <button class="btn btn-primary btn-block fld-full" type="submit">המשך</button>
+          </form>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ===== מצב ריק ===== -->
+  <section class="section-sm">
+    <div class="container">
+      <div class="empty-state">
+        <span class="empty-ico"><svg class="ico" aria-hidden="true"><use href="#i-heart"/></svg></span>
+        <p class="h3">אין כאן עדיין כלום</p>
+        <p>מצב ריק לדוגמה — הסבר קצר ומה עושים עכשיו.</p>
+        <div class="cta-row"><a class="btn btn-primary" href="shop.html">לכל המוצרים</a></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- סקריפט העמוד: ממתין למעטפת ואז מרנדר.
+     בעמוד אמיתי: <script type="module" src="js/p-info.js"></script> והקוד בקובץ הקבוצה. -->
+<script type="module">
+  import { ready } from './js/shell.js';
+  import { CATALOG, FAQ, SHIPPING_ZONES } from './js/data.js';
+  import { productCard, crumbs } from './js/ui.js';
+  import { url } from './js/routes.js';
+  import { fmt } from './js/cart.js';
+
+  await ready; // ההאדר, הפוטר, הסל ו-main.js מוכנים
+
+  document.querySelector('[data-crumbs]').innerHTML = crumbs([{ label: 'חנות', href: url.shop() }, { label: 'תבנית עמוד' }]);
+  document.querySelector('[data-demo-grid]').innerHTML = CATALOG.slice(8, 14).map(productCard).join('');
+  document.querySelector('[data-demo-faq]').innerHTML = FAQ[0].items.slice(0, 3).map(f =>
+    `<div class="faq-item"><h3 class="faq-q">${f.q}</h3><div class="faq-a"><p>${f.a}</p></div></div>`).join('');
+  document.querySelector('[data-demo-table] tbody').innerHTML = SHIPPING_ZONES.map(z =>
+    `<tr><th scope="row">${z.name}</th><td data-label="עד 500 ק&quot;ג" class="num-cell"><bdi>${fmt(z.prices[0])}</bdi></td><td data-label="זמן אספקה">${z.days}</td></tr>`).join('');
+</script>
+</body>
+</html>

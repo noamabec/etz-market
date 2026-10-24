@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>מדריכים ורעיונות לעבודות עץ — עץ מרקט</title>
+  <meta name="description" content="מדריכים מעשיים מהנגרים שלנו: דקים, פרגולות, נגרות, תחזוקה ושימור — ורעיונות מפרויקטים של לקוחות.">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#241C16">
+  <script>document.documentElement.classList.add('js');try{var a=JSON.parse(localStorage.getItem('etz_a11y')||'{}');for(var k in a)if(a[k])document.documentElement.classList.add(k);}catch(e){}</script>
+  <link rel="preload" href="fonts/Birzia-Black.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/FbAbsolutiHeb-LIght.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <link rel="stylesheet" href="css/p-content.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23241C16'/%3E%3Ccircle cx='16' cy='16' r='10' fill='none' stroke='%23F2B124' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='5.5' fill='none' stroke='%23F2B124' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='1.6' fill='%23F2B124'/%3E%3C/svg%3E">
+</head>
+<body data-page="guides">
+
+<main id="main">
+
+  <section class="page-head" aria-labelledby="page-title">
+    <div class="container page-head-in gs-head">
+      <div class="page-head-text">
+        <div data-crumbs></div>
+        <p class="eyebrow">מדריכים ורעיונות</p>
+        <h1 class="page-title" id="page-title">מדריכים ורעיונות לעבודות עץ</h1>
+        <p class="page-intro">איך מודדים, מה בוחרים ואיך שומרים על העץ שנים — מהנגרים שלנו ומפרויקטים של לקוחות.</p>
+      </div>
+      <form class="gs-search" role="search" data-gs-search>
+        <label class="sr-only" for="gs-q">חיפוש במדריכים</label>
+        <div class="input-row">
+          <input class="input" id="gs-q" type="search" name="q" placeholder="חיפוש: דק, שמן, פרגולה…" autocomplete="off">
+          <button class="btn btn-ghost" type="submit"><svg class="ico" aria-hidden="true"><use href="#i-search"/></svg><span class="sr-only">חיפוש</span></button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section class="section-sm" aria-label="קטגוריות מדריכים">
+    <div class="container">
+      <nav class="chips-scroll gs-cats" aria-label="סינון לפי קטגוריה" data-gs-cats></nav>
+    </div>
+  </section>
+
+  <section class="section-sm" aria-labelledby="feat-title" data-gs-featured-wrap>
+    <div class="container">
+      <h2 class="sr-only" id="feat-title">המדריך המוביל</h2>
+      <div data-gs-featured></div>
+    </div>
+  </section>
+
+  <section class="section-sm" aria-labelledby="list-title">
+    <div class="container">
+      <div class="gs-list-head">
+        <h2 class="sec-title" id="list-title" data-gs-list-title>כל המדריכים</h2>
+        <p class="note" data-gs-count aria-live="polite"></p>
+      </div>
+      <ul class="guide-grid gs-grid" data-gs-grid></ul>
+      <div data-gs-empty hidden></div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="nl-title">
+    <div class="container">
+      <form class="gs-news panel panel-tint" data-news-form novalidate>
+        <div>
+          <p class="eyebrow">ניוזלטר</p>
+          <h2 class="h3" id="nl-title">מדריך חדש פעם בחודש — ו-5% הנחה על ההזמנה הראשונה</h2>
+          <p class="muted">בלי ספאם. רק טיפים לעונה, מבצעים ומדריכים חדשים.</p>
+        </div>
+        <div>
+          <label class="field-lbl" for="nl-email">כתובת מייל</label>
+          <div class="input-row">
+            <input class="input" id="nl-email" type="email" required placeholder="name@gmail.com" autocomplete="email" dir="ltr">
+            <button class="btn btn-primary" type="submit">הרשמה</button>
+          </div>
+          <p class="form-alert" role="status" data-news-msg></p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<script type="module" src="js/p-content.js"></script>
+</body>
+</html>

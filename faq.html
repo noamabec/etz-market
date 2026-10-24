@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>שאלות נפוצות — עץ מרקט</title>
+  <meta name="description" content="תשובות לשאלות על הזמנות, משלוחים עם מנוף, חיתוך לפי מידה, תשלומים, החזרות וחשבוניות בעץ מרקט.">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#241C16">
+  <script>document.documentElement.classList.add('js');try{var a=JSON.parse(localStorage.getItem('etz_a11y')||'{}');for(var k in a)if(a[k])document.documentElement.classList.add(k);}catch(e){}</script>
+  <link rel="preload" href="fonts/Birzia-Black.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/FbAbsolutiHeb-LIght.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <link rel="stylesheet" href="css/p-info.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23241C16'/%3E%3Ccircle cx='16' cy='16' r='10' fill='none' stroke='%23F2B124' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='5.5' fill='none' stroke='%23F2B124' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='1.6' fill='%23F2B124'/%3E%3C/svg%3E">
+</head>
+<body data-page="faq">
+<main id="main">
+
+  <section class="page-head" aria-labelledby="page-title">
+    <div class="container page-head-in">
+      <div class="page-head-text">
+        <div data-crumbs></div>
+        <p class="eyebrow">שאלות נפוצות</p>
+        <h1 class="page-title" id="page-title">יש שאלה? כנראה יש גם תשובה.</h1>
+        <p class="page-intro">כל התשובות פתוחות לפניכם — על הזמנות, משלוחים עם מנוף, חיתוך לפי מידה, תשלומים, החזרות וחשבוניות.</p>
+        <form class="faq-search" id="faq-search" role="search" aria-label="חיפוש בשאלות">
+          <label class="sr-only" for="faq-q">חיפוש בשאלות הנפוצות</label>
+          <div class="input-row">
+            <input class="input" id="faq-q" name="q" type="search" placeholder="למשל: מנוף, תשלומים, החזרה" autocomplete="off" aria-describedby="faq-count">
+            <button class="btn btn-ghost" type="button" data-faq-clear>ניקוי</button>
+          </div>
+          <p class="faq-count" id="faq-count" data-faq-count role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-sm" aria-label="שאלות ותשובות">
+    <div class="container layout layout--start">
+      <aside class="layout-aside faq-aside" aria-label="נושאים">
+        <div class="aside-sticky">
+          <p class="toc-title">נושאים</p>
+          <nav class="side-nav" data-faq-nav aria-label="נושאי השאלות"></nav>
+        </div>
+      </aside>
+      <div class="layout-main">
+        <div data-faq></div>
+        <div class="empty-state" data-faq-empty hidden>
+          <span class="empty-ico"><svg class="ico" aria-hidden="true"><use href="#i-search"/></svg></span>
+          <p class="h3">לא מצאנו תשובה ל"<span data-faq-empty-q></span>"</p>
+          <p>נסו מילה אחרת, או פשוט שאלו אותנו — נגר או נציג יענו לכם.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="tel:+97245550000"><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg> <bdi dir="ltr">04-555-0000</bdi></a>
+            <a class="btn btn-ghost" href="https://wa.me/97245550000" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg> WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="help-title">
+    <div class="container">
+      <div class="panel panel-dark faq-help">
+        <div>
+          <p class="eyebrow eyebrow-light">לא מצאתם תשובה?</p>
+          <h2 class="h2" id="help-title">דברו איתנו — עונים בני אדם.</h2>
+          <p class="lead">א׳–ה׳ 07:00–17:00 · ו׳ 07:00–13:00. אפשר גם <a class="u-link" href="contact.html">להשאיר הודעה</a> ונחזור אליכם.</p>
+        </div>
+        <div class="cta-row">
+          <a class="btn btn-primary btn-lg" href="tel:+97245550000"><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg> <bdi dir="ltr">04-555-0000</bdi></a>
+          <a class="btn btn-ghost-light btn-lg" href="https://wa.me/97245550000" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg> כתבו ב-WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script type="module" src="js/p-info.js"></script>
+</body>
+</html>

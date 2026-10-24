@@ -1,0 +1,300 @@
+/* ==========================================================================
+   עץ מרקט — pages.css
+   רכיבים משותפים לעמודים הפנימיים. נטען אחרי styles.css, רק עם הטוקנים שלו.
+   RTL: מאפיינים לוגיים בלבד. Mobile-first: ברירת המחדל = מובייל, ו-@media (min-width) מרחיב.
+
+   תוכן:
+     1. מצב פעיל בתפריט          .nav-link[aria-current] / .is-current
+     2. פירורי לחם                .crumbs
+     3. ראש עמוד פנימי            .page-head (+ --media, --dark) .page-title .page-intro
+     4. עזרי אזורים               .section-sm .sec-title .panel .panel-dark .stack .cluster
+     5. גרידים                     .p-grid-wrap .grid-2/3/4 .chips-scroll .g-excerpt
+     6. פריסה עם צד דביק          .layout .layout-main .layout-aside .aside-sticky (+ --start)
+     7. שאלות נפוצות (פתוחות)      .faq-list .faq-item .faq-q .faq-a  /  <details open>
+     8. טבלה                       .table-wrap .table (+ .table-stack במובייל)
+     9. טפסים                      .form-grid .fld .input .check .fld-hint .fld-error .form-alert
+    10. מד שלבים (סל/קופה)         .progress
+    11. מצב ריק                    .empty-state
+    12. טען עוד / עימוד           .load-more .pager
+    13. תוכן ארוך (תקנון/מאמר)     .prose .toc
+    14. טאבים                      .tabs
+    15. התראה / הערה              .notice (+ --ok, --warn)
+    16. מעטפת קופה מינימלית        .co-hdr .co-ftr
+   ========================================================================== */
+
+/* ---------- 1. Active state in the shared nav ---------- */
+.nav-link[aria-current="page"]::after, .nav-link.is-current::after { transform: scaleX(1); }
+.nav-link[aria-current="page"], .nav-link.is-current { font-weight: var(--fw-bold); }
+.drawer-nav a[aria-current="page"] { color: var(--accent); }
+
+/* ---------- 2. Breadcrumbs ---------- */
+.crumbs { margin-block-end: var(--sp-inner); font-size: var(--fs-5); font-weight: var(--fw-med); color: var(--ink-68); }
+.crumbs ol { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; }
+.crumbs li { display: inline-flex; align-items: center; gap: 8px; }
+.crumbs li + li::before { content: "/"; color: var(--ink-14); font-weight: var(--fw-bold); }
+.crumbs a { text-underline-offset: 3px; }
+.crumbs a:hover { color: var(--ink); text-decoration: underline; }
+.crumbs [aria-current="page"] { color: var(--ink); }
+
+/* ---------- 3. Inner page head ---------- */
+.page-head { position: relative; padding-block: clamp(24px, 4vw, 56px) 0; }
+.page-head-in { position: relative; display: grid; gap: var(--sp-group); }
+.page-title { font-family: var(--ff-display); font-weight: var(--fw-display); font-size: clamp(38px, 5.2vw, 76px); line-height: var(--lh-display); letter-spacing: -.01em; margin-block: 4px var(--sp-inner); }
+.page-intro { font-size: var(--fs-4); color: var(--ink-68); max-width: 60ch; }
+.page-head .cta-row { margin-top: var(--sp-group); }
+.page-head-media { position: relative; }
+.page-head-media .ph { aspect-ratio: 16 / 10; border-radius: var(--r-l); }
+.page-head .ghost-script { top: -.1em; font-size: clamp(110px, 14vw, 210px); }
+/* dark variant (e.g. sale, 404) */
+.page-head--dark .page-head-in { background: var(--ink); color: var(--paper); border-radius: var(--r-l); padding: clamp(24px, 4vw, 56px); overflow: hidden; }
+.page-head--dark .page-intro, .page-head--dark .crumbs, .page-head--dark .eyebrow { color: var(--paper-72); }
+.page-head--dark .crumbs [aria-current="page"] { color: var(--paper); }
+.page-head--dark .ghost-script { color: var(--paper); }
+@media (min-width: 901px) {
+  .page-head--media .page-head-in { grid-template-columns: repeat(12, 1fr); column-gap: var(--gutter); align-items: center; }
+  .page-head--media .page-head-text { grid-column: 1 / span 6; }
+  .page-head--media .page-head-media { grid-column: 7 / -1; }
+}
+
+/* ---------- 4. Section helpers ---------- */
+.section-sm { padding-block: var(--sp-group) 0; }
+.sec-title { font-family: var(--ff-display); font-weight: var(--fw-display); font-size: clamp(26px, 2.8vw, 40px); line-height: var(--lh-title); margin-block-end: var(--sp-inner); }
+.panel { background: var(--card); border: 1px solid var(--ink-14); border-radius: var(--r-m); padding: clamp(18px, 2.2vw, 32px); }
+.panel-tint { background: var(--paper-2); border-color: transparent; }
+.panel-dark { background: var(--ink); color: var(--paper); border-color: transparent; }
+.panel-dark .note, .panel-dark .lead { color: var(--paper-72); }
+.stack { display: grid; gap: var(--sp-inner); }
+.stack-lg { display: grid; gap: var(--sp-group); }
+.cluster { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-inner); }
+.divider { border: 0; border-top: 1px solid var(--ink-14); margin-block: var(--sp-group); }
+.muted { color: var(--ink-68); }
+
+/* ---------- 5. Grids ---------- */
+/* product grid that WRAPS on mobile (2 cols) instead of the home page's swipe row */
+@media (max-width: 900px) {
+  .p-grid.p-grid-wrap { grid-auto-flow: row; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-columns: auto; overflow: visible; margin-inline: 0; padding-inline: 0; scroll-snap-type: none; gap: 10px; }
+  .p-grid-wrap .p-media .ph { inset: 8px; }
+  .p-grid-wrap .p-media .badge { top: 14px; inset-inline-start: 14px; }
+  .p-grid-wrap .wish { top: 10px; inset-inline-end: 10px; width: 38px; height: 38px; }
+  .p-grid-wrap .p-body { padding: 10px 12px 12px; }
+  .cat-grid.cat-grid-wrap, .guide-grid.guide-grid-wrap { grid-auto-flow: row; grid-template-columns: repeat(2, minmax(0, 1fr)); overflow: visible; margin-inline: 0; padding-inline: 0; }
+}
+@media (min-width: 901px) { .p-grid.p-grid-3 { grid-template-columns: repeat(3, 1fr); } }
+/* list view (shop "תצוגה: רשימה") */
+@media (min-width: 701px) {
+  .p-grid.is-list { grid-template-columns: 1fr; }
+  .p-grid.is-list .p-card { flex-direction: row; }
+  .p-grid.is-list .p-media { flex: 0 0 220px; }
+  .p-grid.is-list .p-body { justify-content: center; }
+  .p-grid.is-list .btn-add { width: auto; align-self: flex-start; }
+}
+.grid-2, .grid-3, .grid-4 { display: grid; gap: var(--gutter); grid-template-columns: 1fr; }
+@media (min-width: 701px) { .grid-2, .grid-3, .grid-4 { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1081px) { .grid-3 { grid-template-columns: repeat(3, 1fr); } .grid-4 { grid-template-columns: repeat(4, 1fr); } }
+/* horizontally scrolling chip row (category chips, filters on mobile) */
+.chips-scroll { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; padding-bottom: 4px; }
+.chips-scroll::-webkit-scrollbar { display: none; }
+.chips-scroll .chip { flex: none; }
+.chip-link { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding-inline: 16px; border-radius: 999px; border: 1.5px solid var(--ink-14); background: var(--card); font-weight: var(--fw-med); transition: border-color var(--t-fast), background-color var(--t-fast), color var(--t-fast); }
+.chip-link:hover { border-color: var(--ink); }
+.chip-link[aria-current="page"], .chip-link.is-on { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.g-excerpt { font-size: var(--fs-5); color: var(--ink-68); margin-top: 6px; }
+
+/* ---------- 6. Layout with sticky aside ---------- */
+/* <div class="layout"><div class="layout-main">…</div><aside class="layout-aside"><div class="aside-sticky">…</div></aside></div>
+   default: aside AFTER main (summary on the left in RTL). .layout--start = aside first (filters on the right in RTL). */
+.layout { display: grid; gap: var(--sp-group); grid-template-columns: minmax(0, 1fr); }
+.layout-main { min-width: 0; }
+@media (min-width: 1001px) {
+  .layout { grid-template-columns: minmax(0, 1fr) clamp(300px, 28vw, 400px); gap: var(--gutter); align-items: start; }
+  .layout--start { grid-template-columns: clamp(240px, 21vw, 300px) minmax(0, 1fr); }
+  .layout--start .layout-aside { order: -1; }
+  .layout-aside { align-self: stretch; } /* full-height column so .aside-sticky can actually stick */
+  .aside-sticky { position: sticky; top: calc(var(--hdr-main-h) + var(--hdr-nav-h) + 24px); }
+  .is-checkout .aside-sticky { top: 24px; }
+}
+
+/* ---------- 7. FAQ — answers OPEN by default (no hiding) ---------- */
+/* Markup A (preferred):  <div class="faq-list"><div class="faq-item"><h3 class="faq-q">…</h3><div class="faq-a"><p>…</p></div></div></div>
+   Markup B: <details class="faq-item" open><summary class="faq-q">…</summary><div class="faq-a">…</div></details> */
+.faq-list { display: grid; border-top: 1px solid var(--ink-14); }
+.faq-item { padding-block: clamp(16px, 1.6vw, 24px); border-bottom: 1px solid var(--ink-14); }
+.faq-q { display: flex; align-items: flex-start; gap: 12px; font-family: var(--ff-body); font-size: var(--fs-4); font-weight: var(--fw-bold); line-height: 1.35; }
+.faq-q::before { content: "ש."; flex: none; font-family: var(--ff-display); font-weight: var(--fw-display); color: var(--accent-hover); }
+.faq-a { margin-top: 6px; padding-inline-start: calc(1.4em + 12px); color: var(--ink-68); max-width: 72ch; }
+.faq-a p + p { margin-top: .6em; }
+.faq-a a { text-decoration: underline; text-underline-offset: 3px; color: var(--ink); }
+details.faq-item > summary { list-style: none; cursor: pointer; }
+details.faq-item > summary::-webkit-details-marker { display: none; }
+details.faq-item > summary::after { content: "−"; margin-inline-start: auto; font-weight: var(--fw-bold); color: var(--ink-68); }
+details.faq-item:not([open]) > summary::after { content: "+"; }
+.faq-cat { scroll-margin-top: calc(var(--hdr-main-h) + var(--hdr-nav-h) + 24px); }
+.faq-cat + .faq-cat { margin-top: var(--sp-group); }
+.faq-item mark { background: rgb(242 177 36 / .35); color: inherit; border-radius: 3px; }
+
+/* ---------- 8. Data table ---------- */
+.table-wrap { width: 100%; overflow-x: auto; border: 1px solid var(--ink-14); border-radius: var(--r-m); background: var(--card); }
+.table { width: 100%; border-collapse: collapse; font-size: var(--fs-5); }
+.table caption { text-align: start; padding: 14px 16px 0; font-weight: var(--fw-bold); font-size: var(--fs-4); }
+.table th, .table td { padding: 12px 16px; text-align: start; vertical-align: top; border-bottom: 1px solid var(--ink-14); }
+.table thead th { background: var(--paper-2); font-weight: var(--fw-bold); white-space: nowrap; }
+.table tbody tr:last-child > * { border-bottom: 0; }
+.table tbody th { font-weight: var(--fw-bold); }
+.table .num-cell { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.table tr.is-hl > * { background: rgb(242 177 36 / .14); }
+/* specs table: label | value */
+.table-spec th { width: 38%; color: var(--ink-68); font-weight: var(--fw-med); }
+/* stack rows on mobile: add data-label="…" to each <td> */
+@media (max-width: 700px) {
+  .table-stack thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .table-stack tr { display: block; padding: 10px 0; border-bottom: 1px solid var(--ink-14); }
+  .table-stack tr:last-child { border-bottom: 0; }
+  .table-stack td, .table-stack tbody th { display: flex; justify-content: space-between; gap: 16px; padding: 6px 16px; border: 0; }
+  .table-stack td[data-label]::before { content: attr(data-label); color: var(--ink-68); font-weight: var(--fw-med); }
+}
+
+/* ---------- 9. Forms (no ornaments — brief §9) ---------- */
+.form-grid { display: grid; gap: 16px var(--sp-inner); grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 701px) { .form-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .form-grid .fld-full { grid-column: 1 / -1; } }
+.fld { display: grid; gap: 6px; min-width: 0; }
+.fld > .field-lbl { margin-bottom: 0; }
+.field-lbl .req { color: var(--accent-hover); margin-inline-start: 2px; }
+.field-lbl .opt { color: var(--ink-68); font-weight: var(--fw-med); }
+.input {
+  width: 100%; min-height: 52px; padding: 12px 16px; border-radius: var(--r-s);
+  border: 1.5px solid var(--ink-14); background: var(--card); color: var(--ink);
+  font: inherit; font-weight: var(--fw-med); transition: border-color var(--t-fast), box-shadow var(--t-fast);
+}
+.input::placeholder { color: var(--ink-68); font-weight: var(--fw-light); }
+.input:hover { border-color: rgb(36 28 22 / .32); }
+.input:focus { outline: none; border-color: var(--ink); box-shadow: 0 0 0 3px rgb(242 177 36 / .45); }
+textarea.input { min-height: 132px; resize: vertical; line-height: var(--lh-body); }
+select.input { appearance: none; padding-inline-end: 44px; cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23241C16' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-size: 18px; background-position: left 16px center; }
+.input[type="tel"], .input[type="email"], .input[dir="ltr"] { text-align: end; } /* LTR value, RTL layout */
+.input[aria-invalid="true"], .fld.is-error .input { border-color: #B3261E; }
+.input[aria-invalid="true"]:focus { box-shadow: 0 0 0 3px rgb(179 38 30 / .22); }
+.input:disabled { background: var(--paper-2); color: var(--ink-68); cursor: not-allowed; }
+.fld-hint { font-size: var(--fs-5); color: var(--ink-68); }
+.fld-error { display: flex; align-items: center; gap: 6px; font-size: var(--fs-5); font-weight: var(--fw-med); color: #B3261E; }
+.fld-error:empty { display: none; }
+/* input with a button (coupon, search) */
+.input-row { display: flex; gap: 8px; }
+.input-row .input { flex: 1; min-width: 0; }
+.input-row .btn { flex: none; min-height: 52px; }
+/* checkbox / radio: <label class="check"><input type="checkbox"><span>טקסט</span></label> */
+.check { position: relative; display: inline-flex; align-items: flex-start; gap: 10px; cursor: pointer; font-weight: var(--fw-med); line-height: 1.4; min-height: 24px; }
+.check input { appearance: none; flex: none; width: 22px; height: 22px; margin: 0; border: 1.5px solid var(--ink-68); border-radius: 6px; background: var(--card); display: grid; place-items: center; cursor: pointer; transition: background-color var(--t-fast), border-color var(--t-fast); }
+.check input[type="radio"] { border-radius: 50%; }
+.check input:checked { background: var(--ink); border-color: var(--ink); }
+.check input[type="checkbox"]:checked::after { content: ""; width: 6px; height: 11px; border: solid var(--paper); border-width: 0 2.2px 2.2px 0; transform: translateY(-1px) rotate(45deg); }
+.check input[type="radio"]:checked::after { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--paper); }
+.check input:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.check a { text-decoration: underline; text-underline-offset: 3px; }
+/* big option cards (delivery window, payment method, crane access): <label class="opt-card"><input type="radio"><span>…</span></label> */
+.opt-cards { display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+.opt-card { position: relative; display: block; cursor: pointer; }
+.opt-card input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+.opt-card > span { display: flex; flex-direction: column; gap: 2px; height: 100%; padding: 14px 16px; border: 1.5px solid var(--ink-14); border-radius: var(--r-s); background: var(--card); font-weight: var(--fw-bold); transition: border-color var(--t-fast), box-shadow var(--t-fast); }
+.opt-card small { font-weight: var(--fw-med); color: var(--ink-68); font-size: var(--fs-5); }
+.opt-card:hover > span { border-color: var(--ink); }
+.opt-card input:checked + span { border-color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--ink); background: rgb(242 177 36 / .12); }
+.opt-card input:focus-visible + span { outline: 3px solid var(--accent); outline-offset: 2px; }
+fieldset.fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
+fieldset.fieldset > legend { padding: 0; font-weight: var(--fw-bold); font-size: var(--fs-3); margin-bottom: var(--sp-inner); }
+/* form-level message (light background version of .form-msg) */
+.form-alert { padding: 12px 16px; border-radius: var(--r-s); font-weight: var(--fw-med); font-size: var(--fs-5); background: var(--paper-2); }
+.form-alert:empty { display: none; }
+.form-alert.is-error { background: rgb(179 38 30 / .1); color: #8C1D18; }
+.form-alert.is-ok { background: rgb(242 177 36 / .2); }
+
+/* ---------- 10. Progress steps (cart / checkout) ---------- */
+/* <ol class="progress"><li class="is-done">סל</li><li class="is-current" aria-current="step">פרטים</li><li>משלוח</li><li>תשלום</li></ol> */
+.progress { display: flex; align-items: center; gap: 8px; counter-reset: st; font-size: var(--fs-5); font-weight: var(--fw-med); color: var(--ink-68); overflow-x: auto; scrollbar-width: none; }
+.progress li { counter-increment: st; display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; }
+.progress li::before { content: counter(st); flex: none; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; border: 1.5px solid var(--ink-14); background: var(--card); font-weight: var(--fw-bold); color: var(--ink-68); }
+.progress li:not(:last-child) { flex: 1 1 auto; }
+.progress li:not(:last-child)::after { content: ""; flex: 1 1 24px; min-width: 16px; height: 1.5px; background: var(--ink-14); margin-inline-start: 4px; }
+.progress .is-done { color: var(--ink); }
+.progress .is-done::before { content: "✓"; background: var(--ink); border-color: var(--ink); color: var(--paper); }
+.progress .is-done::after { background: var(--ink) !important; }
+.progress .is-current { color: var(--ink); font-weight: var(--fw-bold); }
+.progress .is-current::before { background: var(--accent); border-color: var(--accent); color: var(--ink); }
+.progress a:hover { text-decoration: underline; }
+
+/* ---------- 11. Empty state ---------- */
+.empty-state { display: grid; justify-items: center; gap: var(--sp-inner); text-align: center; padding: clamp(36px, 6vw, 80px) var(--sp-inner); border: 1.5px dashed var(--ink-14); border-radius: var(--r-l); background: var(--card); }
+.empty-state .empty-ico { width: 72px; height: 72px; border-radius: 50%; display: grid; place-items: center; background: var(--paper-2); }
+.empty-state .empty-ico .ico { width: 34px; height: 34px; stroke-width: 1.4; }
+.empty-state .h3 { margin-top: 4px; }
+.empty-state p { color: var(--ink-68); max-width: 46ch; }
+.empty-state .cta-row { justify-content: center; margin-top: 8px; }
+
+/* ---------- 12. Load more / pagination ---------- */
+.load-more { display: grid; justify-items: center; gap: 10px; margin-top: var(--sp-group); text-align: center; }
+.load-more .note { font-weight: var(--fw-med); }
+.load-more .meter { width: min(240px, 60vw); margin-top: 0; }
+.pager { display: flex; justify-content: center; flex-wrap: wrap; gap: 6px; margin-top: var(--sp-group); }
+.pager a, .pager span { min-width: 44px; height: 44px; display: grid; place-items: center; padding-inline: 10px; border-radius: var(--r-s); border: 1.5px solid var(--ink-14); background: var(--card); font-weight: var(--fw-bold); }
+.pager a:hover { border-color: var(--ink); }
+.pager [aria-current="page"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+/* ---------- 13. Long-form content (legal pages, articles) ---------- */
+.prose { max-width: 72ch; font-size: var(--fs-4); }
+.prose > * + * { margin-top: 1em; }
+.prose h2 { font-family: var(--ff-display); font-weight: var(--fw-display); font-size: clamp(26px, 2.6vw, 36px); line-height: var(--lh-title); margin-top: 1.8em; scroll-margin-top: calc(var(--hdr-main-h) + var(--hdr-nav-h) + 24px); }
+.prose h3 { font-size: var(--fs-3); font-weight: var(--fw-bold); line-height: 1.25; margin-top: 1.5em; scroll-margin-top: calc(var(--hdr-main-h) + var(--hdr-nav-h) + 24px); }
+.prose ul, .prose ol { padding-inline-start: 1.3em; display: grid; gap: .4em; }
+.prose ul { list-style: disc; }
+.prose ol { list-style: decimal; }
+.prose li::marker { color: var(--accent-hover); }
+.prose a { text-decoration: underline; text-underline-offset: 3px; font-weight: var(--fw-med); }
+.prose strong { font-weight: var(--fw-bold); }
+.prose blockquote, .prose .tip { padding: 16px 20px; border-inline-start: 4px solid var(--accent); background: var(--card); border-radius: 0 var(--r-s) var(--r-s) 0; font-weight: var(--fw-med); }
+.prose figure img { border-radius: var(--r-m); width: 100%; }
+.prose figcaption { font-size: var(--fs-5); color: var(--ink-68); margin-top: 6px; }
+/* table of contents */
+.toc { font-size: var(--fs-5); }
+.toc-title { font-weight: var(--fw-bold); font-size: var(--fs-4); margin-bottom: 8px; }
+.toc ol { display: grid; gap: 2px; counter-reset: toc; }
+.toc li { counter-increment: toc; }
+.toc a { display: flex; gap: 8px; padding: 6px 0; color: var(--ink-68); font-weight: var(--fw-med); border-inline-start: 2px solid transparent; padding-inline-start: 10px; transition: color var(--t-fast), border-color var(--t-fast); }
+.toc a::before { content: counter(toc, decimal-leading-zero); font-weight: var(--fw-bold); color: var(--ink-14); }
+.toc a:hover, .toc a[aria-current="true"] { color: var(--ink); border-color: var(--accent); }
+
+/* ---------- 14. Tabs (login / register, account sections) ---------- */
+/* <div class="tabs" role="tablist"><button role="tab" aria-selected="true">התחברות</button>…</div> */
+.tabs { display: inline-flex; gap: 4px; padding: 4px; border-radius: 999px; background: var(--paper-2); }
+.tabs [role="tab"] { min-height: 44px; padding-inline: 20px; border-radius: 999px; font-weight: var(--fw-bold); color: var(--ink-68); transition: background-color var(--t-fast), color var(--t-fast); }
+.tabs [role="tab"]:hover { color: var(--ink); }
+.tabs [role="tab"][aria-selected="true"] { background: var(--card); color: var(--ink); box-shadow: 0 1px 0 var(--ink-14), 0 6px 16px -10px rgb(36 28 22 / .5); }
+/* side menu (account) */
+.side-nav { display: grid; gap: 2px; }
+.side-nav a, .side-nav button { display: flex; align-items: center; gap: 10px; min-height: 48px; padding-inline: 14px; border-radius: var(--r-s); font-weight: var(--fw-med); text-align: start; width: 100%; }
+.side-nav a:hover, .side-nav button:hover { background: var(--ink-06); }
+.side-nav [aria-current="page"], .side-nav [aria-current="true"] { background: var(--ink); color: var(--paper); }
+@media (max-width: 1000px) { .side-nav { display: flex; overflow-x: auto; scrollbar-width: none; } .side-nav a, .side-nav button { white-space: nowrap; width: auto; } }
+
+/* ---------- 15. Notice ---------- */
+.notice { display: flex; align-items: flex-start; gap: 12px; padding: 14px 18px; border-radius: var(--r-m); background: var(--card); border: 1px solid var(--ink-14); font-weight: var(--fw-med); }
+.notice .ico { margin-top: .15em; flex: none; }
+.notice--ok { background: rgb(242 177 36 / .16); border-color: transparent; }
+.notice--warn { background: var(--ink); color: var(--paper); border-color: transparent; }
+.notice--warn .ico { color: var(--accent); }
+
+/* ---------- 16. Minimal checkout shell (body[data-shell="checkout"]) ---------- */
+.co-hdr { background: var(--paper); border-bottom: 1px solid var(--ink-14); }
+.co-hdr-in { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 72px; }
+.co-secure { display: none; align-items: center; gap: 8px; font-size: var(--fs-5); font-weight: var(--fw-bold); }
+.co-help { display: inline-flex; align-items: center; gap: 10px; }
+.co-help span { display: flex; flex-direction: column; line-height: 1.15; }
+.co-help small { font-size: 12px; color: var(--ink-68); font-weight: var(--fw-med); }
+.co-help bdi { font-weight: var(--fw-bold); }
+.co-ftr { margin-top: var(--sp-section); border-top: 1px solid var(--ink-14); padding-block: 24px; font-size: var(--fs-5); color: var(--ink-68); }
+.co-ftr-in { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+.co-ftr-links { display: flex; flex-wrap: wrap; gap: 6px 18px; }
+.co-ftr-links a:hover { color: var(--ink); text-decoration: underline; }
+body.is-checkout { padding-bottom: 0; }
+@media (min-width: 701px) { .co-secure { display: inline-flex; } }
+@media (max-width: 900px) { .co-hdr .logo-sub { display: none; } }

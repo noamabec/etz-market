@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>מחשבון כמויות לדק — עץ מרקט</title>
+  <meta name="description" content="כמה דק צריך? בוחרים סוג דק ומידות, ומקבלים שטח, כמות לוחות כולל פחת, תת-מבנה, ברגים, שמן ומחיר משוער — ומוסיפים הכל לסל בלחיצה.">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#241C16">
+  <script>document.documentElement.classList.add('js');try{var a=JSON.parse(localStorage.getItem('etz_a11y')||'{}');for(var k in a)if(a[k])document.documentElement.classList.add(k);}catch(e){}</script>
+  <link rel="preload" href="fonts/Birzia-Black.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/FbAbsolutiHeb-LIght.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <link rel="stylesheet" href="css/p-content.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23241C16'/%3E%3Ccircle cx='16' cy='16' r='10' fill='none' stroke='%23F2B124' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='5.5' fill='none' stroke='%23F2B124' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='1.6' fill='%23F2B124'/%3E%3C/svg%3E">
+</head>
+<body data-page="deck-calculator">
+
+<main id="main">
+
+  <!-- ===== 1. כותרת ===== -->
+  <section class="page-head" aria-labelledby="page-title">
+    <div class="container page-head-in">
+      <div class="page-head-text">
+        <div data-crumbs></div>
+        <p class="eyebrow">מחשבון כמויות לדק</p>
+        <h1 class="page-title" id="page-title">כמה דק צריך? מחשבים ב-30 שניות</h1>
+        <p class="page-intro">בוחרים סוג דק ומזינים מידות — ומקבלים את כל הרשימה: לוחות כולל פחת, תת-מבנה, ברגים, שמן ומחיר משוער. אפשר להוסיף הכל לסל או לשלוח לנו לבדיקה.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-sm" aria-label="המחשבון">
+    <div class="container layout dc-layout">
+      <form class="layout-main dc-form" id="deck-calc" novalidate>
+
+        <!-- שלב 1 — סוג דק -->
+        <fieldset class="fieldset dc-step">
+          <legend><span class="dc-step-n" aria-hidden="true">1</span> סוג הדק</legend>
+          <div class="dc-types" data-dc-types></div>
+        </fieldset>
+
+        <!-- שלב 2 — מידות -->
+        <fieldset class="fieldset dc-step">
+          <legend><span class="dc-step-n" aria-hidden="true">2</span> מידות השטח</legend>
+
+          <div class="tabs dc-mode" role="radiogroup" aria-label="צורת השטח">
+            <label class="dc-mode-opt"><input type="radio" name="mode" value="rect" checked><span>מלבן</span></label>
+            <label class="dc-mode-opt"><input type="radio" name="mode" value="complex"><span>צורה מורכבת</span></label>
+          </div>
+
+          <div class="dc-dims">
+            <div class="dc-rects" data-dc-rects></div>
+            <div class="dc-rect-actions" data-complex-only hidden>
+              <button type="button" class="btn btn-ghost" data-add-rect><svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg> הוספת מלבן</button>
+              <p class="note">מחלקים את השטח למלבנים, מודדים כל אחד — והמחשבון מחבר.</p>
+            </div>
+
+            <div class="dc-plan-wrap" aria-hidden="true">
+              <div class="dc-plan" data-dc-plan></div>
+              <p class="calc-caption" data-plan-caption>מבט על · הלוחות לאורך הדק</p>
+            </div>
+          </div>
+
+          <div class="dc-opts">
+            <fieldset class="chips">
+              <legend class="field-lbl">מרווח בין הלוחות</legend>
+              <div class="chip-row">
+                <label class="chip"><input type="radio" name="gap" value="3"><span><bdi>3</bdi> מ"מ</span></label>
+                <label class="chip"><input type="radio" name="gap" value="5" checked><span><bdi>5</bdi> מ"מ <small>מומלץ</small></span></label>
+                <label class="chip"><input type="radio" name="gap" value="7"><span><bdi>7</bdi> מ"מ</span></label>
+              </div>
+            </fieldset>
+            <fieldset class="chips">
+              <legend class="field-lbl">כיוון הלוחות</legend>
+              <div class="chip-row">
+                <label class="chip"><input type="radio" name="dir" value="along" checked><span>לאורך</span></label>
+                <label class="chip"><input type="radio" name="dir" value="across"><span>לרוחב</span></label>
+              </div>
+            </fieldset>
+            <fieldset class="chips">
+              <legend class="field-lbl">תת-מבנה</legend>
+              <div class="chip-row">
+                <label class="chip"><input type="radio" name="joist" value="deck-joist-pine" checked><span>אורן מוקצה <small>על קרקע / בטון</small></span></label>
+                <label class="chip"><input type="radio" name="joist" value="deck-joist-alu"><span>אלומיניום <small>גג / מרפסת</small></span></label>
+              </div>
+            </fieldset>
+          </div>
+        </fieldset>
+      </form>
+
+      <!-- תוצאה -->
+      <aside class="layout-aside" aria-labelledby="res-title">
+        <div class="aside-sticky dc-result">
+          <div class="dc-res-head">
+            <p class="eyebrow eyebrow-light">התוצאה</p>
+            <h2 class="h3" id="res-title">רשימת הכמויות שלכם</h2>
+            <p class="dc-area"><strong data-r-area>0</strong> <span>מ"ר</span></p>
+          </div>
+          <ul class="dc-lines" data-r-lines aria-live="polite"></ul>
+          <div class="dc-total">
+            <span>מחיר משוער</span>
+            <strong data-r-total>0 ₪</strong>
+          </div>
+          <p class="dc-hint" data-r-hint></p>
+          <div class="dc-actions">
+            <button type="button" class="btn btn-primary btn-lg btn-block" data-add-all><svg class="ico" aria-hidden="true"><use href="#i-cart"/></svg> הוספת הכל לסל</button>
+            <a class="btn btn-ghost-light btn-block" data-wa-list href="https://wa.me/97245550000" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg> שליחת הרשימה ל-WhatsApp</a>
+          </div>
+          <p class="dc-fine">כמויות משוערות לפי מידות בלבד. נציג יאשר איתכם את הרשימה בטלפון לפני המשלוח.</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ===== איך מודדים נכון ===== -->
+  <section class="section" aria-labelledby="measure-title">
+    <div class="container split-grid">
+      <div class="split-media">
+        <figure class="dc-figure panel" data-anim>
+          <svg class="dc-measure" viewBox="0 0 420 300" role="img" aria-labelledby="measure-svg-t">
+            <title id="measure-svg-t">איור: שטח בצורת L מחולק לשני מלבנים, A ו-B, עם קווי מידה לכל אחד</title>
+            <defs>
+              <pattern id="dc-boards" width="12" height="12" patternUnits="userSpaceOnUse"><rect width="12" height="12" fill="#9C6B3F"/><rect y="10.5" width="12" height="1.5" fill="#241C16" opacity=".45"/></pattern>
+            </defs>
+            <!-- house wall -->
+            <rect x="40" y="26" width="340" height="14" fill="#241C16" opacity=".85" rx="2"/>
+            <text x="210" y="20" text-anchor="middle" class="dc-svg-note">קיר הבית</text>
+            <!-- A -->
+            <rect x="40" y="48" width="340" height="110" fill="url(#dc-boards)" rx="3"/>
+            <!-- B -->
+            <rect x="200" y="158" width="180" height="96" fill="url(#dc-boards)" rx="3"/>
+            <line x1="200" y1="158" x2="380" y2="158" stroke="#F2B124" stroke-width="2.5" stroke-dasharray="6 5"/>
+            <text x="120" y="110" class="dc-svg-tag">A</text>
+            <text x="290" y="214" class="dc-svg-tag">B</text>
+            <!-- dims -->
+            <g class="dc-svg-dim">
+              <line x1="40" y1="276" x2="200" y2="276"/><line x1="40" y1="268" x2="40" y2="284"/><line x1="200" y1="268" x2="200" y2="284"/>
+              <line x1="200" y1="276" x2="380" y2="276"/><line x1="380" y1="268" x2="380" y2="284"/>
+              <line x1="22" y1="48" x2="22" y2="158"/><line x1="14" y1="48" x2="30" y2="48"/><line x1="14" y1="158" x2="30" y2="158"/>
+              <line x1="398" y1="158" x2="398" y2="254"/><line x1="390" y1="158" x2="406" y2="158"/><line x1="390" y1="254" x2="406" y2="254"/>
+            </g>
+            <text x="290" y="296" text-anchor="middle" class="dc-svg-num">4 מ׳</text>
+            <text x="120" y="296" text-anchor="middle" class="dc-svg-num">+ 3.5 מ׳</text>
+            <text x="14" y="108" class="dc-svg-num" transform="rotate(-90 14 108)" text-anchor="middle">2.5 מ׳</text>
+            <text x="414" y="206" class="dc-svg-num" transform="rotate(-90 414 206)" text-anchor="middle">2 מ׳</text>
+          </svg>
+          <figcaption class="note">A = 7.5 × 2.5 מ׳ · B = 4 × 2 מ׳ → <bdi>18.75 + 8 = 26.75</bdi> מ"ר</figcaption>
+        </figure>
+      </div>
+      <div class="split-text">
+        <p class="eyebrow" data-anim>לפני שמחשבים</p>
+        <h2 class="h2" id="measure-title" data-anim>איך מודדים נכון</h2>
+        <ol class="dc-tips" data-anim>
+          <li><strong>מודדים במטרים, מקיר לקצה.</strong> אורך ורוחב של השטח הגמור, כולל המקום שבו הדק פוגש קיר או מדרגה.</li>
+          <li><strong>צורה לא מלבנית? מחלקים.</strong> L, ח או פינה חתוכה — מחלקים למלבנים, ובוחרים "צורה מורכבת" במחשבון.</li>
+          <li><strong>הפחת כבר בפנים.</strong> המחשבון מוסיף 10% לחיתוכים. בדק עם הרבה פינות או עמודים — הוסיפו עוד 5%.</li>
+        </ol>
+        <a class="btn btn-ghost" href="guide.html?id=deck-measure" data-anim>למדריך המלא <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== נגר ===== -->
+  <section class="section" aria-labelledby="carp-title">
+    <div class="container">
+      <div class="dc-carp" data-anim>
+        <div class="ruler" aria-hidden="true"></div>
+        <div class="dc-carp-in">
+          <div>
+            <p class="eyebrow eyebrow-light">ייעוץ נגר — חינם</p>
+            <h2 class="h2" id="carp-title">רוצים שנגר יעבור על זה?</h2>
+            <p class="lead">שלחו את הרשימה או תמונה של השטח, ונגר שלנו יבדוק כמויות, תת-מבנה וכיוון לוחות — לפני שאתם מזמינים.</p>
+          </div>
+          <div class="cta-row">
+            <a class="btn btn-primary btn-lg" data-wa-link="שלום, אשמח שנגר יעבור על החישוב לדק שלי" href="https://wa.me/97245550000" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg> WhatsApp לנגר</a>
+            <a class="btn btn-ghost-light btn-lg" href="tel:+97245550000"><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg> <bdi dir="ltr">04-555-0000</bdi></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script type="module" src="js/p-content.js"></script>
+</body>
+</html>

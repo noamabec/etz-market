@@ -117,8 +117,10 @@ s { color: var(--ink-68); font-weight: var(--fw-light); }
 .h1 { font-family: var(--ff-display); font-weight: var(--fw-display); font-size: var(--fs-1); line-height: var(--lh-display); letter-spacing: -.01em; }
 .h2 { font-family: var(--ff-display); font-weight: var(--fw-display); font-size: var(--fs-2); line-height: var(--lh-title); letter-spacing: -.005em; }
 .h3 { font-family: var(--ff-body); font-weight: var(--fw-bold); font-size: var(--fs-3); line-height: 1.2; }
-.eyebrow { font-size: var(--fs-5); font-weight: var(--fw-med); letter-spacing: .02em; color: var(--ink-68); display: inline-flex; align-items: center; gap: 10px; margin-block-end: var(--sp-inner); }
-.eyebrow::before { content: ""; width: 22px; height: 0; border-top: 1.5px solid currentColor; }
+.eyebrow { position: relative; font-size: var(--fs-5); font-weight: var(--fw-med); letter-spacing: .02em; color: var(--ink-68); display: inline-flex; align-items: center; gap: 10px; padding-bottom: 6px; margin-block-end: var(--sp-inner); }
+/* קו תחתון עדין שנמתח מתחילת השורה */
+.eyebrow::after { content: ""; position: absolute; inset-inline: 0; bottom: 0; height: 1.5px; border-radius: 2px; background: linear-gradient(to left, var(--accent), rgb(242 177 36 / .15)); transform-origin: right; transition: transform .9s var(--e-soft) calc(var(--d, 0s) + .25s); }
+.js .eyebrow[data-anim]:not(.is-in)::after { transform: scaleX(0); }
 .eyebrow-light { color: var(--paper-72); }
 .lead { font-size: var(--fs-4); color: var(--ink-68); max-width: 52ch; }
 .note { font-size: var(--fs-5); color: var(--ink-68); }

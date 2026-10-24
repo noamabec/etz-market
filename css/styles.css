@@ -889,3 +889,13 @@ html.a11y-nomotion .hv-crane * { animation: none !important; }
 html.a11y-nomotion.js .hv-crane .cs-cable, html.a11y-nomotion.js .hv-crane .cs-bundle { transform: none; }
 html.a11y-nomotion.js .hv-crane .cs-bshadow { opacity: 1; transform: translateX(-50%); }
 html.a11y-nomotion.js .hv-crane .cs-tag { opacity: 1; transform: rotate(-1.5deg); }
+
+/* ---------- צל קבוע לכל "הריבועים" באתר: כרטיסים, פאנלים ותמונות עצמאיות ----------
+   (תמונות שבתוך כרטיס לא מקבלות צל משלהן — הכרטיס כבר מוצל) */
+.season-card, .calc-card, .p-card, .rev, .ph-rounded, .guide-card .ph,
+.page-head-media .ph, .page-head--dark .page-head-in, .panel,
+.cx-card, .cx-free, .dx-days, .dc-step, .dc-result, .dc-carp, .gs-feat, .gs-news, .gd-hero, .ab-team .ph,
+.ch-card, .branch-media .ph, .map-ph,
+.mid-banner-in, .cust-gal .ph, .area-media, .winter-media, .pd-stage {
+  box-shadow: var(--shadow-soft);
+}

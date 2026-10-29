@@ -908,3 +908,4 @@ html.a11y-nomotion.js .hv-crane .cs-tag { opacity: 1; transform: rotate(-1.5deg)
 .mid-banner-in, .cust-gal .ph, .area-media, .winter-media, .pd-stage {
   box-shadow: var(--shadow-soft);
 }
+.ft-bottom .credit { color: var(--paper); font-weight: var(--fw-med); }
